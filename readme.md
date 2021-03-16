@@ -5,8 +5,7 @@ Clone to `components` folder beside [GC9A01 Component](https://github.com/liyanb
 Edit `CMakeLists.txt` file and edit patch of  header `gc9a01.h` as below example:
 
 ```
-idf_component_register(SRCS "dispcolor.c" "include/fonts"
- INCLUDE_DIRS "include" "include/fonts" "../gc9a01/include")
+set(GC9A01_Header_Dir "../gc9a01/include")
 ```
 
 **Add as submodule:**
