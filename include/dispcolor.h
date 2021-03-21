@@ -5,6 +5,7 @@
 // ��� �� ����� �����, �� �� �������� ������� ������ �� ��� YouTube-�����
 // "����������� � ���������" https://www.youtube.com/channel/UChButpZaL5kUUl_zTyIDFkQ
 // �����: �������� ������ / Nadyrshin Ruslan
+//
 // Liyanboy74
 //------------------------------------------------------------------------------
 #ifndef _DISPCOLOR_H
