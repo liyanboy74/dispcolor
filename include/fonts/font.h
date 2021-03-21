@@ -10,6 +10,7 @@
 #define _FONTS_H
 
 #include <stdio.h>
+#include <stdint.h>
 
 
 #define FONTID_6X8M  0
@@ -273,7 +274,7 @@
 #define	XXXXXX_X	0xfd
 #define	XXXXXXX_	0xfe
 #define	XXXXXXXX	0xff
-  
+
 
 typedef uint8_t *(*t_font_getchar)(char Char);
 

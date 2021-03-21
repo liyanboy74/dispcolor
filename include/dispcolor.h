@@ -13,10 +13,11 @@
 #include <stdint.h>
 
 // �������������� �������
-#define DISPTYPE_GC9A01        3
+#define DISPTYPE_BMPC       1
+#define DISPTYPE_GC9A01     2
 
 // ��� ������� (���������� �������)
-#define DISPCOLOR_type         DISPTYPE_GC9A01
+#define DISPCOLOR_type      DISPTYPE_GC9A01
 
 typedef struct
 {
@@ -48,11 +49,11 @@ typedef union
 #define GREEN    0x07E0
 #define CYAN     0x07FF
 #define MAGENTA  0xF81F
-#define YELLOW   0xFFE0 
+#define YELLOW   0xFFE0
 #define WHITE    0xFFFF
 
 
-void dispcolor_Init(uint8_t Width, uint8_t Height);
+void dispcolor_Init(uint16_t Width, uint16_t Height);
 void dispcolor_Update();
 void dispcolor_ClearScreen(void);
 void dispcolor_SetBrightness(uint8_t Value);

@@ -1,18 +1,27 @@
-# Dispcolor ESP-IDF Component    
+# Dispcolor Component    
 
-Clone to `components` folder beside [GC9A01 Component](https://github.com/liyanboy74/gc9a01-esp-idf)  .
+#### Add as submodule:
+
+`git submodule add https://github.com/liyanboy74/dispcolor.git components/dispcolor`
+
+### Adapt to ESP-IDF
+
+##### Select LCD Type:
+
+Edit `#define DISPCOLOR_type` in `dispcolor.h` file.
+
+###### Example for GC9a01 LCD:
+
+Clone  [GC9A01 Component](https://github.com/liyanboy74/gc9a01-esp-idf) 
 
 Edit `CMakeLists.txt` file and edit patch of  header `gc9a01.h` as below example:
 
 ```
-set(GC9A01_Header_Dir "../gc9a01/include")
+set(LCD_Header_Dir "../gc9a01/include")
 ```
 
-**Add as submodule:**
 
-`git submodule add https://github.com/liyanboy74/dispcolor-esp-idf.git components/dispcolor`
-
-**Example Test:**
+##### Example Test:
 
 ```c
 #include <stdio.h>
@@ -44,6 +53,40 @@ void app_main(void)
 
     xTaskCreate(LCD,"Test LCD",STACK_SIZE,NULL,tskIDLE_PRIORITY,&LCDHandle);
     configASSERT(LCDHandle);
+}
+
+```
+### Adapt to BMPC & GCC
+##### Select LCD Type:
+
+Edit `#define DISPCOLOR_type` in `dispcolor.h` file & add header file in `dispcolor.c` file.
+
+Clone  [BMPC Component](https://github.com/liyanboy74/bmpc) 
+
+You may need to edit the following functions :
+
+```
+void dispcolor_Init(uint16_t Width, uint16_t Height);
+void dispcolor_Update();
+void dispcolor_SetBrightness(uint8_t Value);
+void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color);
+void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,uint16_t color);
+uint16_t dispcolor_GetPixel(int16_t x, int16_t y);
+```
+##### Example Test:
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+
+#include "dispcolor.h"
+
+int main(int argc, char** argv)
+{
+    dispcolor_Init(500,500);
+    dispcolor_FillCircle(250,250,150,BLUE);
+    dispcolor_Update();
 }
 
 ```

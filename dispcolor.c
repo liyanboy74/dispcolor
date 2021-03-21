@@ -5,10 +5,11 @@
 // ��� �� ����� �����, �� �� �������� ������� ������ �� ��� YouTube-�����
 // "����������� � ���������" https://www.youtube.com/channel/UChButpZaL5kUUl_zTyIDFkQ
 // �����: �������� ������ / Nadyrshin Ruslan
+//
 // Liyanboy74
 //------------------------------------------------------------------------------
-#include <dispcolor.h>
-#include <font.h>
+#include "dispcolor.h"
+#include "font.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -18,10 +19,13 @@
 #define PI 3.14159265
 static uint16_t _Width, _Height;
 
-#if (DISPCOLOR_type == DISPTYPE_GC9A01)
+#if (DDISPCOLOR_type == DISPTYPE_GC9A01)
 #include "gc9a01.h"
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+#include "bmpc.h"
+bmpc_screen_s bmpcs;
 #else
-  #error ������ c ��������� ����� ������� �� ��������������, ���������� �������� ������ disp1color
+  #error Disp1color Can't find Screen Type!
 #endif
 
 
@@ -31,11 +35,15 @@ static void SwapInt16Values(int16_t *pValue1, int16_t *pValue2) {
 	*pValue2 = TempValue;
 }
 
-void dispcolor_Init(uint8_t Width, uint8_t Height) {
+void dispcolor_Init(uint16_t Width, uint16_t Height) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_Init(Width, Height);
 	_Width = GC9A01_GetWidth();
 	_Height = GC9A01_GetHeight();
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    bmpc_init(&bmpcs,"Screen",Width,Height);
+    _Width=bmpc_get_width(&bmpcs);
+    _Height=bmpc_get_width(&bmpcs);
 #endif
 
 	dispcolor_ClearScreen();
@@ -44,6 +52,8 @@ void dispcolor_Init(uint8_t Width, uint8_t Height) {
 void dispcolor_Update() {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_Update();
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    bmpc_update(&bmpcs);
 #endif
 }
 
@@ -53,18 +63,24 @@ void dispcolor_SetBrightness(uint8_t Value) {
 
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_SetBL(Value);
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    bmpc_set_brightness(&bmpcs,Value);
 #endif
 }
 
 void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_DrawPixel(x, y, color);
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    bmpc_draw_pixel(&bmpcs,x,y,color);
 #endif
 }
 
 uint16_t dispcolor_GetPixel(int16_t x, int16_t y) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	return GC9A01_GetPixel(x, y);
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    return bmpc_read_pixel(&bmpcs,x,y);
 #endif
 }
 
@@ -72,6 +88,8 @@ void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,
 		uint16_t color) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_FillRect(x, y, w, h, color);
+#elif (DISPCOLOR_type == DISPTYPE_BMPC)
+    bmpc_fill_rect(&bmpcs,x,y,w,h,color);
 #endif
 }
 
