@@ -65,7 +65,7 @@ Clone  [BMPC Component](https://github.com/liyanboy74/bmpc)
 
 You may need to edit the following functions :
 
-```
+```c
 void dispcolor_Init(uint16_t Width, uint16_t Height);
 void dispcolor_Update();
 void dispcolor_SetBrightness(uint8_t Value);
@@ -74,7 +74,7 @@ void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,uint16_t colo
 uint16_t dispcolor_GetPixel(int16_t x, int16_t y);
 ```
 ##### Example Test:
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
