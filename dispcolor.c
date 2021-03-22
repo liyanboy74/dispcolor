@@ -8,18 +8,18 @@
 //
 // Liyanboy74
 //------------------------------------------------------------------------------
-#include "dispcolor.h"
-#include "font.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
+#include "dispcolor.h"
+#include "font.h"
 
 #define PI 3.14159265
 static uint16_t _Width, _Height;
 
-#if (DDISPCOLOR_type == DISPTYPE_GC9A01)
+#if (DISPCOLOR_type == DISPTYPE_GC9A01)
 #include "gc9a01.h"
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
 #include "bmpc.h"
