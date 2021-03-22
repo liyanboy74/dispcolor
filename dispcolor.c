@@ -25,7 +25,7 @@ static uint16_t _Width, _Height;
 #include "bmpc.h"
 bmpc_screen_s bmpcs;
 #else
-  #error Disp1color Can't find Screen Type!
+  #error Disp1color Can not find Screen Type!
 #endif
 
 
