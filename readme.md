@@ -17,7 +17,7 @@ Clone  [GC9A01 Component](https://github.com/liyanboy74/gc9a01-esp-idf)
 Edit `CMakeLists.txt` file and edit patch of  header `gc9a01.h` as below example:
 
 ```
-set(LCD_Header_Dir "../gc9a01/include")
+set(LCD_Header_Dir "../gc9a01")
 ```
 
 

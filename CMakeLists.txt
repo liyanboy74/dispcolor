@@ -1,14 +1,14 @@
-set(LCD_Header_Dir "../gc9a01/include")
+set(LCD_Header_Dir "../gc9a01")
 
 set(srcs "dispcolor.c")
-list(APPEND srcs "include/fonts/f16f.c")
-list(APPEND srcs "include/fonts/f24f.c")
-list(APPEND srcs "include/fonts/f32f.c")
-list(APPEND srcs "include/fonts/f6x8m.c")
-list(APPEND srcs "include/fonts/font.c")
+list(APPEND srcs "fonts/f16f.c")
+list(APPEND srcs "fonts/f24f.c")
+list(APPEND srcs "fonts/f32f.c")
+list(APPEND srcs "fonts/f6x8m.c")
+list(APPEND srcs "fonts/font.c")
 
-set(inc "include")
-list(APPEND inc "include/fonts")
+set(inc ".")
+list(APPEND inc "fonts")
 list(APPEND inc ${LCD_Header_Dir})
 
 idf_component_register(SRCS  ${srcs} INCLUDE_DIRS ${inc})
