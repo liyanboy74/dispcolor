@@ -72,7 +72,7 @@ void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_DrawPixel(x, y, color);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
-    bmpc_draw_pixel(&bmpcs,x,y,color);
+    bmpc_draw_pixel(&bmpcs,x,y,color_16_to_24_s(color));
 #endif
 }
 
@@ -80,7 +80,7 @@ uint16_t dispcolor_GetPixel(int16_t x, int16_t y) {
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	return GC9A01_GetPixel(x, y);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
-    return bmpc_read_pixel(&bmpcs,x,y);
+    return color_24_to_16_s(bmpc_read_pixel(&bmpcs,x,y));
 #endif
 }
 
@@ -89,7 +89,7 @@ void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,
 #if (DISPCOLOR_type == DISPTYPE_GC9A01)
 	GC9A01_FillRect(x, y, w, h, color);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
-    bmpc_fill_rect(&bmpcs,x,y,w,h,color);
+    bmpc_fill_rect(&bmpcs,x,y,w,h,color_16_to_24_s(color));
 #endif
 }
 
