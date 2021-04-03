@@ -4,11 +4,11 @@
 
 `git submodule add https://github.com/liyanboy74/dispcolor.git components/dispcolor`
 
-### Adapt to ESP-IDF
-
 ##### Select LCD Type:
 
-Edit `#define DISPCOLOR_type` in `dispcolor.h` file.
+Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or `#define DISPCOLOR_type [LCD DRIVER Number]`
+
+### Adapt to ESP-IDF
 
 ###### Example for GC9a01 LCD:
 
@@ -57,9 +57,6 @@ void app_main(void)
 
 ```
 ### Adapt to BMPC & GCC
-##### Select LCD Type:
-
-Edit `#define DISPCOLOR_type` in `dispcolor.h` file & add header file in `dispcolor.c` file.
 
 Clone  [BMPC Component](https://github.com/liyanboy74/bmpc) 
 
