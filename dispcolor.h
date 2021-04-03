@@ -18,7 +18,9 @@
 #define DISPTYPE_GC9A01     2
 
 // ��� ������� (���������� �������)
-#define DISPCOLOR_type      DISPTYPE_GC9A01
+#ifndef DISPCOLOR_type
+	#define DISPCOLOR_type      DISPTYPE_GC9A01
+#endif
 
 typedef struct
 {
