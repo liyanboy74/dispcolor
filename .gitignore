@@ -1,0 +1,11 @@
+bin
+obj
+build
+.vscode
+*.exe
+*.bmp
+*.cbp
+*.depend
+*.o
+*.a
+*.zip

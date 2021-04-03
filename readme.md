@@ -8,11 +8,15 @@
 
 Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or Define `DISPCOLOR_type`=`1` or `2` or `...`
 
+*Defined in CMakeLists.txt*
+
 ### Adapt to ESP-IDF
 
 ###### Example for GC9a01 LCD:
 
 Clone  [GC9A01 Component](https://github.com/liyanboy74/gc9a01-esp-idf) 
+
+Rename `ESP-IDF_CMakeLists.txt` to `CMakeLists.txt`
 
 Edit `CMakeLists.txt` file and edit patch of  header `gc9a01.h` as below example:
 
@@ -60,16 +64,8 @@ void app_main(void)
 
 Clone  [BMPC Component](https://github.com/liyanboy74/bmpc) 
 
-You may need to edit the following functions :
+Rename `GCC_CMakeLists.txt` to `CMakeLists.txt`
 
-```c
-void dispcolor_Init(uint16_t Width, uint16_t Height);
-void dispcolor_Update();
-void dispcolor_SetBrightness(uint8_t Value);
-void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color);
-void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,uint16_t color);
-uint16_t dispcolor_GetPixel(int16_t x, int16_t y);
-```
 ##### Example Test:
 ```c
 #include <stdio.h>
@@ -86,5 +82,20 @@ int main(int argc, char** argv)
     dispcolor_Update();
 }
 
+```
+
+
+
+### Adapt to other LCD
+
+You may need to edit the following functions :
+
+```c
+void dispcolor_Init(uint16_t Width, uint16_t Height);
+void dispcolor_Update();
+void dispcolor_SetBrightness(uint8_t Value);
+void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color);
+void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,uint16_t color);
+uint16_t dispcolor_GetPixel(int16_t x, int16_t y);
 ```
 
