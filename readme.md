@@ -8,8 +8,6 @@
 
 Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or Define `DISPCOLOR_type`=`1` or `2` or `...`
 
-*Defined in CMakeLists.txt*
-
 ### Adapt to ESP-IDF
 
 ###### Example for GC9a01 LCD:
