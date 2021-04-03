@@ -19,7 +19,7 @@
 
 // ��� ������� (���������� �������)
 #ifndef DISPCOLOR_type
-	#define DISPCOLOR_type      DISPTYPE_BMPC
+	#define DISPCOLOR_type      DISPTYPE_GC9A01
 #endif
 
 typedef struct
