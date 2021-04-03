@@ -6,7 +6,7 @@
 
 ##### Select LCD Type:
 
-Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or `#define DISPCOLOR_type [LCD DRIVER Number]`
+Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or Define `DISPCOLOR_type`=`1` or `2`
 
 ### Adapt to ESP-IDF
 
