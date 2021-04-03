@@ -11,6 +11,4 @@ set(inc ".")
 list(APPEND inc "fonts")
 list(APPEND inc ${LCD_Header_Dir})
 
-add_definitions(-DDISPCOLOR_type=2)
-
 idf_component_register(SRCS  ${srcs} INCLUDE_DIRS ${inc})
