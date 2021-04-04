@@ -1,5 +1,7 @@
 # Dispcolor Component    
 
+Common LCD functions
+
 #### Add as submodule:
 
 `git submodule add https://github.com/liyanboy74/dispcolor.git components/dispcolor`
@@ -13,8 +15,6 @@ Edit `#define DISPCOLOR_type` in `dispcolor.h` file , or Define `DISPCOLOR_type`
 ###### Example for GC9a01 LCD:
 
 Clone  [GC9A01 Component](https://github.com/liyanboy74/gc9a01-esp-idf) 
-
-Rename `ESP-IDF_CMakeLists.txt` to `CMakeLists.txt`
 
 Edit `CMakeLists.txt` file and edit patch of  header `gc9a01.h` as below example:
 
@@ -62,7 +62,11 @@ void app_main(void)
 
 Clone  [BMPC Component](https://github.com/liyanboy74/bmpc) 
 
-Rename `GCC_CMakeLists.txt` to `CMakeLists.txt`
+Edit `CMakeLists.txt` file and edit patch of  header `bmpc.h` as below example:
+
+```
+set(LCD_Header_Dir "../bmpc")
+```
 
 ##### Example Test:
 ```c
@@ -81,8 +85,6 @@ int main(int argc, char** argv)
 }
 
 ```
-
-
 
 ### Adapt to other LCD
 
