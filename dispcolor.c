@@ -24,6 +24,10 @@ static uint16_t _Width, _Height;
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
 #include "bmpc.h"
 bmpc_screen_s bmpcs;
+#elif (DISPCOLOR_type == DISPTYPE_SIMLCD)
+#include "simlcd.h"
+#include "color.h"
+color_rgb_s c;
 #else
   #error Disp1color Can not find Screen Type!
 #endif
@@ -44,8 +48,11 @@ void dispcolor_Init(uint16_t Width, uint16_t Height) {
     bmpc_init(&bmpcs,"Screen",Width,Height);
     _Width=bmpc_get_width(&bmpcs);
     _Height=bmpc_get_width(&bmpcs);
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+	simlcd_init(Height,Width,3);
+	_Width=Width;
+	_Height=Height;
 #endif
-
 	dispcolor_ClearScreen();
 }
 
@@ -54,6 +61,8 @@ void dispcolor_Update() {
 	GC9A01_Update();
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     bmpc_update(&bmpcs);
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+	simlcd_update();
 #endif
 }
 
@@ -65,6 +74,8 @@ void dispcolor_SetBrightness(uint8_t Value) {
 	GC9A01_SetBL(Value);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     bmpc_set_brightness(&bmpcs,Value);
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+
 #endif
 }
 
@@ -73,6 +84,10 @@ void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color) {
 	GC9A01_DrawPixel(x, y, color);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     bmpc_draw_pixel(&bmpcs,x,y,color_16_to_24_s(color));
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+	c=color_16_to_24_s(color);
+	simlcd_set_color(c.r,c.g,c.b);
+	simlcd_draw_point(x,y);
 #endif
 }
 
@@ -81,6 +96,8 @@ uint16_t dispcolor_GetPixel(int16_t x, int16_t y) {
 	return GC9A01_GetPixel(x, y);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     return color_24_to_16_s(bmpc_read_pixel(&bmpcs,x,y));
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+	return 0;
 #endif
 }
 
@@ -90,6 +107,10 @@ void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,
 	GC9A01_FillRect(x, y, w, h, color);
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     bmpc_fill_rect(&bmpcs,x,y,w,h,color_16_to_24_s(color));
+#elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
+	c=color_16_to_24_s(color);
+	simlcd_set_color(c.r,c.g,c.b);
+	simlcd_draw_rect(x,y,w,h);
 #endif
 }
 

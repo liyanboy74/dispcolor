@@ -21,8 +21,7 @@ else()
 
     project(dispcolor)
 
-    set(LCD_Header_Dir "../bmpc")
-    add_definitions(-DDISPCOLOR_type=1)
+    set(LCD_Header_Dir "../simlcd")
 
     set(src "dispcolor.c")
     list(APPEND src "fonts/f16f.c")
@@ -37,7 +36,7 @@ else()
 
     add_library(${PROJECT_NAME} ${src})
 
-    target_link_libraries(${PROJECT_NAME} bmp color bmpc)
-    include_directories(../bmp ../color ../bmpc ${inc})
+    target_link_libraries(${PROJECT_NAME} color simlcd)
+    include_directories(../color ${inc})
 
 endif()

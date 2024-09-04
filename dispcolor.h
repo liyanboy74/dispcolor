@@ -16,10 +16,11 @@
 // �������������� �������
 #define DISPTYPE_BMPC       1
 #define DISPTYPE_GC9A01     2
+#define DISPTYPE_SIMLCD		3
 
 // ��� ������� (���������� �������)
 #ifndef DISPCOLOR_type
-	#define DISPCOLOR_type      DISPTYPE_GC9A01
+	#define DISPCOLOR_type      DISPTYPE_SIMLCD
 #endif
 
 typedef struct
@@ -55,6 +56,9 @@ typedef union
 #define YELLOW   0xFFE0
 #define WHITE    0xFFFF
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void dispcolor_Init(uint16_t Width, uint16_t Height);
 void dispcolor_Update();
@@ -79,5 +83,9 @@ int16_t dispcolor_DrawString(int16_t X, int16_t Y, uint8_t FontID, char *Str, ui
 int16_t dispcolor_DrawString_Bg(int16_t X, int16_t Y, uint8_t FontID, char *Str, uint16_t TextColor, uint16_t BgColor);
 int16_t dispcolor_printf(int16_t X, int16_t Y, uint8_t FontID, uint16_t TextColor, const char *args, ...);
 int16_t dispcolor_printf_Bg(int16_t X, int16_t Y, uint8_t FontID, uint16_t TextColor, uint16_t BgColor, const char *args, ...);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
