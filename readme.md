@@ -58,32 +58,14 @@ void app_main(void)
 }
 
 ```
-### Adapt to BMPC & GCC
+### Simulate LCD
 
-Clone  [BMPC Component](https://github.com/liyanboy74/bmpc) 
+Clone  [SIMLCD Component](https://github.com/liyanboy74/simlcd) 
 
-Edit `CMakeLists.txt` file and edit patch of  header `bmpc.h` as below example:
+Edit `CMakeLists.txt` file and edit patch of  header `simlcd.h` as below example:
 
 ```
-set(LCD_Header_Dir "../bmpc")
-```
-
-##### Example Test:
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-
-#include "dispcolor.h"
-
-int main(int argc, char** argv)
-{
-    dispcolor_Init(500,500);
-    dispcolor_FillCircle(250,250,150,BLUE);
-    dispcolor_Update();
-}
-
+set(LCD_Header_Dir "../simlcd")
 ```
 
 ### Adapt to other LCD
@@ -93,9 +75,7 @@ You may need to edit the following functions :
 ```c
 void dispcolor_Init(uint16_t Width, uint16_t Height);
 void dispcolor_Update();
-void dispcolor_SetBrightness(uint8_t Value);
 void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color);
 void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,uint16_t color);
-uint16_t dispcolor_GetPixel(int16_t x, int16_t y);
 ```
 
