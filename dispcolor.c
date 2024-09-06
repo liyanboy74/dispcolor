@@ -49,7 +49,7 @@ void dispcolor_Init(uint16_t Width, uint16_t Height) {
     _Width=bmpc_get_width(&bmpcs);
     _Height=bmpc_get_width(&bmpcs);
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
-	simlcd_init(Height,Width,3);
+	simlcd_init(&LCD_BUFFER,"Main",Height,Width,0);
 	_Width=Width;
 	_Height=Height;
 #endif
@@ -62,7 +62,7 @@ void dispcolor_Update() {
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     bmpc_update(&bmpcs);
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
-	simlcd_update();
+	simlcd_update(&LCD_BUFFER);
 #endif
 }
 
@@ -86,8 +86,8 @@ void dispcolor_DrawPixel(int16_t x, int16_t y, uint16_t color) {
     bmpc_draw_pixel(&bmpcs,x,y,color_16_to_24_s(color));
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
 	c=color_16_to_24_s(color);
-	simlcd_set_color(c.r,c.g,c.b);
-	simlcd_draw_point(x,y);
+	simlcd_set_color(&LCD_BUFFER,c.r,c.g,c.b);
+	simlcd_draw_point(&LCD_BUFFER,x,y);
 #endif
 }
 
@@ -109,8 +109,8 @@ void dispcolor_FillRect(int16_t x, int16_t y, int16_t w, int16_t h,
     bmpc_fill_rect(&bmpcs,x,y,w,h,color_16_to_24_s(color));
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
 	c=color_16_to_24_s(color);
-	simlcd_set_color(c.r,c.g,c.b);
-	simlcd_draw_rect(x,y,w,h);
+	simlcd_set_color(&LCD_BUFFER,c.r,c.g,c.b);
+	simlcd_draw_rect(&LCD_BUFFER,x,y,w,h);
 #endif
 }
 
