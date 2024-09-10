@@ -97,7 +97,8 @@ uint16_t dispcolor_GetPixel(int16_t x, int16_t y) {
 #elif (DISPCOLOR_type == DISPTYPE_BMPC)
     return color_24_to_16_s(bmpc_read_pixel(&bmpcs,x,y));
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
-	return 0;
+	uint32_t c=simlcd_get_point(&LCD_BUFFER,x,y);
+	return color_24_to_16(((c>>16)&0xff),((c>>8)&0xff),((c>>0)&0xff));
 #endif
 }
 
