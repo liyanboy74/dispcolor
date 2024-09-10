@@ -49,7 +49,7 @@ void dispcolor_Init(uint16_t Width, uint16_t Height) {
     _Width=bmpc_get_width(&bmpcs);
     _Height=bmpc_get_width(&bmpcs);
 #elif(DISPCOLOR_type ==DISPTYPE_SIMLCD)
-	LCD_BUFFER=simlcd_init(Height,Width,0);
+	LCD_BUFFER=simlcd_init(Height,Width,2);
 	_Width=Width;
 	_Height=Height;
 #endif
